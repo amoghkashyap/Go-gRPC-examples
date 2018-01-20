@@ -71,6 +71,14 @@ func (db *DbManager) handleMigrations(host string){
 	}
 }
 
+func GetInstance() *DbManager {
+	once.Do(func() {
+		instance = createInstance()
+	})
+	return instance
+
+}
+
 func createCassandraKeyspace(host string){
 	//Create cassandra session
 	cluster := gocql.NewCluster(host)
