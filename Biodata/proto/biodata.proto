@@ -15,7 +15,7 @@ service Info {
 message biorequest{
 	string emailId = 1;
 	string name = 2;
-	int32 age = 3;
+	string age = 3;
 }
 
 message bioresponse{
