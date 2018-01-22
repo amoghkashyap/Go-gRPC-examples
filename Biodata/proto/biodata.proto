@@ -1,0 +1,24 @@
+syntax ="proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.biodata";
+option java_outer_classname = "BiodataProto";
+option go_package = "message";
+
+package biodata;
+
+service Info {
+
+	rpc Details (biorequest) returns (bioresponse) {}
+}
+
+message biorequest{
+	string emailId = 1;
+	string name = 2;
+	int32 age = 3;
+}
+
+message bioresponse{
+	string statusResponse = 1;
+	bool status = 2;
+}
