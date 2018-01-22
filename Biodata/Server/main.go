@@ -1,17 +1,17 @@
 package main
 
 import (
+	"Go-gRPC-examples/CassandraDB+Migrations/cassandra"
+	"Go-gRPC-examples/CassandraDB+Migrations/cassandra/entities"
 	pb "github.com/amoghkashyap/Go-gRPC-examples/Biodata/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
-	"Go-gRPC-examples/CassandraDB+Migrations/cassandra/entities"
-	"Go-gRPC-examples/CassandraDB+Migrations/cassandra"
 )
 
-const(
+const (
 	port = ":17002"
 )
 
@@ -19,9 +19,9 @@ var (
 	isBioPresent bool
 )
 
-type server struct {}
+type server struct{}
 
-func (s *server) Details(ctx context.Context, in *pb.Biorequest) (*pb.Bioresponse,error){
+func (s *server) Details(ctx context.Context, in *pb.Biorequest) (*pb.Bioresponse, error) {
 
 	person := entities.Biodata{}
 	person.SetName(in.GetName())
@@ -30,25 +30,24 @@ func (s *server) Details(ctx context.Context, in *pb.Biorequest) (*pb.Biorespons
 
 	isBioPresent := cassandra.FindBioWithName(person)
 
-	if(isBioPresent){
-		return &pb.Bioresponse{StatusResponse:"Biodata already present",Status:false},nil
+	if isBioPresent {
+		return &pb.Bioresponse{StatusResponse: "Biodata already present", Status: false}, nil
 	} else {
 		cassandra.InsertBio(person)
-		return &pb.Bioresponse{StatusResponse:"Biodata Entry Successful",Status:true},nil
+		return &pb.Bioresponse{StatusResponse: "Biodata Entry Successful", Status: true}, nil
 	}
 
 }
 
-
 func main() {
 	log.Println("starting Biodata gRPC service")
-	lis, err := net.Listen("tcp",port)
+	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatal("failed to listen %v", err)
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterInfoServer(s,&server{})
+	pb.RegisterInfoServer(s, &server{})
 
 	reflection.Register(s)
 
