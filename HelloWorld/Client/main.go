@@ -15,7 +15,7 @@ func main() {
 
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
-		log.Fatal(" error maga %v", err)
+		log.Fatal(" error %v", err)
 	}
 
 	defer conn.Close()

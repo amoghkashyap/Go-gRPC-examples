@@ -16,10 +16,10 @@ type DbManager struct{
 
 const (
 	keyspaceName = "biodata"
-	createkeyspace = "CREATE KEYSPACE IF NOT EXISTS biodata WITH replication = {'calss':SimpleStrategy','replication-factor':1}"
+	createkeyspace = "CREATE KEYSPACE IF NOT EXISTS biodata WITH replication = {'class':'SimpleStrategy', 'replication_factor': 1}"
 	port = 9042
-	//migrationFiles = "C:/Go/bin/src/Go-gRPC-examples/CassandraDB+Migrations/migration/cql"
-	migrationFiles = "github.com/amoghkashyap/Go-gRPC-examples/CassandraDB+Migrations/migration/cql"
+	migrationFiles = "C:/Go/bin/src/Go-gRPC-examples/CassandraDB+Migrations/migration/cql"
+	//migrationFiles = "github.com/amoghkashyap/Go-gRPC-examples/CassandraDB+Migrations/migration/cql"
 	)
 
 var (
