@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS info (
-	emaiId text PRIMARY KEY,
+	emaiId text,
 	name text,
-	age text
+	age text,
+	PRIMARY KEY(emailId)
 );
