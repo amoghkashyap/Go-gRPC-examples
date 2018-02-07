@@ -8,10 +8,10 @@ import (
 var (
 	//database manager instance
 	dbManager = GetInstance()
-
-	name    string
-	age     int
-	emailId string
+	status    bool
+	name      string
+	age       int
+	emailId   string
 )
 
 const (
@@ -74,10 +74,14 @@ func DeleteAllBiodata(biodata entities.Biodata) {
 func FindBioWithName(biodata entities.Biodata) bool {
 	query := dbManager.Session.Query(BioFindNameQuery, biodata.GetName())
 	if err := query.Scan(&emailId, &name, &age); err != nil {
-		log.Println("Biodata: %s %s %s", emailId, name, age)
-		return true
+		if emailId == "" {
+			status = false
+		} else {
+			log.Println("Biodata: %s %s %s", emailId, name, age)
+			status = true
+		}
 	}
-	return false
+	return status
 }
 
 // Database operations for finding all biodata entries in database
