@@ -1,7 +1,7 @@
 package cassandra
 
 import (
-	"Go-gRPC-examples/CassandraDB+Migrations/cassandra/entities"
+	"Go-gRPC-examples/CassandraDBMigrations/cassandra/entities"
 	"log"
 )
 

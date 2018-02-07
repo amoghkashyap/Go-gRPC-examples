@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Go-gRPC-examples/CassandraDB+Migrations/cassandra"
-	"Go-gRPC-examples/CassandraDB+Migrations/cassandra/entities"
+	"Go-gRPC-examples/CassandraDBMigrations/cassandra"
+	"Go-gRPC-examples/CassandraDBMigrations/cassandra/entities"
 	pb "github.com/amoghkashyap/Go-gRPC-examples/Biodata/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
